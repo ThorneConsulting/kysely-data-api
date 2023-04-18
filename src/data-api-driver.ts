@@ -6,6 +6,7 @@ export type DataApiDriverConfig = {
   secretArn: string;
   resourceArn: string;
   database: string;
+  continueAfterTimeout?: boolean;
 };
 
 export class DataApiDriver implements Driver {
@@ -90,6 +91,7 @@ class DataApiConnection implements DatabaseConnection {
       parameters: compiledQuery.parameters as SqlParameter[],
       database: this.#config.database,
       includeResultMetadata: true,
+      continueAfterTimeout: this.#config.continueAfterTimeout
     });
     if (!r.columnMetadata) {
       const numAffectedRows = BigInt(r.numberOfRecordsUpdated || 0);

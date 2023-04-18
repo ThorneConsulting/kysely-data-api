@@ -11,6 +11,7 @@ const opts: DataApiDriverConfig = {
   database: TEST_DATABASE,
   secretArn: process.env.RDS_SECRET,
   resourceArn: process.env.RDS_ARN,
+  continueAfterTimeout: true
 };
 const dialect = new DataApiDialect({
   mode: "postgres",
